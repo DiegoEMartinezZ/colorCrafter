@@ -1,15 +1,27 @@
-import React from "react";
+import React, { useContext } from "react";
 import Palette from "../components/Palette";
 import Footer from "../sections/Footer";
-import Subtitle from "../ui/txt/Subtitle";
 import ShortText from "../ui/txt/ShortText";
+import { ThemeContext } from "../context/ThemeContext";
+import DarkModeBtn from "../components/DarkModeBtn";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPenFancy } from "@fortawesome/free-solid-svg-icons";
 
 const Home = () => {
+  const { theme } = useContext(ThemeContext);
   return (
     <>
-      <section className="bg-black text-white absolute bottom-0 top-0 right-0 left-0">
-        <div className="my-12 py-8 text-center">
-          <Subtitle name={"Choose your color"} />
+      <section
+        className={`bg-${
+          theme === "light" ? "light" : "dark"
+        } text-white relative`}
+      >
+        <DarkModeBtn />
+        <div className="pt-16 text-center">
+          <FontAwesomeIcon
+            icon={faPenFancy}
+            className={`text-${theme === "light" ? "dark" : "light"}`}
+          />
           <ShortText
             text={
               "Press the spacebar to get a random color or pick your own color."
@@ -20,7 +32,6 @@ const Home = () => {
           </div>
         </div>
       </section>
-      <Footer />
     </>
   );
 };

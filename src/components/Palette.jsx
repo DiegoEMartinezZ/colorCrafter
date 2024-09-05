@@ -1,64 +1,26 @@
 import axios from "axios";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import { ThemeContext } from "../context/ThemeContext";
 
 const Palette = () => {
+  // Context
+  const { theme, inputRef, handleInputSelected } = useContext(ThemeContext);
+  //
+
+  //  Create a 6-digit hexadecimal color code.
   const newRandomColor = () => {
-    const letters = "0123456789abcdef";
+    var numbersAndLetters = "0123456789abcdef";
     let color = "#";
     for (let i = 0; i < 6; i++) {
-      color += letters[Math.floor(Math.random() * 16)];
+      color += numbersAndLetters[Math.floor(Math.random() * 16)];
     }
     return color;
   };
+  //
 
   const [colorSelected, setColorSelected] = useState(newRandomColor());
 
-  // get the value of the color input
-
-  const newColor = (e) => {
-    e.preventDefault();
-    setColorSelected(e.target.value);
-  };
-
-  // API request for the color name
-  const apiURL = `https://api.color.pizza/v1/?values=${colorSelected.slice(1)}`;
-
-  const [nameColor, setNameColor] = useState("");
-
-  useEffect(() => {
-    axios
-      .get(apiURL)
-      .then((res) => {
-        const name = res.data.paletteTitle;
-        setNameColor(name);
-      })
-      .catch((err) => {
-        "ERROR", err;
-      });
-  }, []);
-
-  // API request for color scheme
-
-  const [newPalette, setNewPalette] = useState([]);
-
-  const colorScheme = `https://www.thecolorapi.com/scheme?hex=${colorSelected.slice(
-    1
-  )}&format=JSON&mode=monochrome`;
-
-  useEffect(() => {
-    axios
-      .get(colorScheme)
-      .then((res) => {
-        const colors = res.data.colors.map((color) => color.hex.value);
-        setNewPalette(colors);
-      })
-      .catch((err) => {
-        "ERROR", err;
-      });
-  }, []);
-
   //handler for spacebar
-
   const handleKeyDown = (e) => {
     if (e.code === "Space") {
       setColorSelected(newRandomColor());
@@ -74,40 +36,127 @@ const Palette = () => {
     };
   }, []);
 
-  // select the input when is clicked
+  // Get the value of the color input
 
-  const inputRef = useRef(null);
-  const handleInputSelected = () => {
-    if (inputRef.current) {
-      inputRef.current.select();
-    }
+  const getColor = (e) => {
+    e.preventDefault();
+    setColorSelected(e.target.value);
   };
+
+  // API request for the color name
+  // const apiURL = `https://api.color.pizza/v1/?values=${colorSelected.slice(1)}`;
+
+  // const [nameColor, setNameColor] = useState();
+
+  // useEffect(() => {
+  //   const newColorName = () => {
+  //     axios
+  //       .get(apiURL)
+  //       .then((res) => {
+  //         const name = res.data.paletteTitle;
+  //         console.log(name);
+  //         setNameColor(name);
+  //       })
+  //       .catch((err) => {
+  //         "ERROR", err;
+  //       });
+  //   };
+  //   newColorName();
+  // }, []);
+
+  // API request for color scheme
+  const [newPalette, setNewPalette] = useState([]);
+
+  const colorSchemeURL = `https://www.thecolorapi.com/scheme?hex=${colorSelected.slice(
+    1
+  )}&format=JSON&mode=monochrome&count=5`;
+
+  useEffect(() => {
+    const paletteColor = () => {
+      axios
+        .get(colorSchemeURL)
+        .then((res) => {
+          const colors = res.data.colors.map((color) => color.hex.value);
+          setNewPalette(colors);
+        })
+        .catch((err) => {
+          "ERROR", err;
+        });
+    };
+    paletteColor();
+  }, [newPalette]);
+
+  // Click to copy the color fromm the current palette:
+
+  const copyColorFromPalette = (color) => {
+    console.log(`Copy the color: ${color}`);
+  };
+
+  //
 
   return (
     <>
-      <section className="flex justify-center">
-        <div className="rounded-xl p-2 text-center flex justify-center items-center bg-white text-black">
-          <div id="color-picker-container">
-            <input type="color" value={colorSelected} onChange={newColor} />
-          </div>
+      <section className="relative flex items-center  justify-center">
+        <div
+          className={`bg-${
+            theme === "light" ? "dark" : "aquamarine-400"
+          } flex relative h-full items-center p-0.5 rounded-full w-60 justify-center`}
+        >
+          <input
+            type="color"
+            className="absolute w-7 h-7 left-4 rounded-full border-none cursor-pointer"
+            value={colorSelected}
+            onChange={getColor}
+          />
 
           <input
             type="text"
             ref={inputRef}
             value={colorSelected}
-            className="font-medium"
-            placeholder="Hexcode"
-            onChange={newColor}
+            className="p-2 text-center w-full font-medium h-full rounded-full bg-transparent"
+            onChange={getColor}
             onClick={handleInputSelected}
           />
         </div>
       </section>
-      <h1 className="text-white my-3 p-2 font-bold text-lg">{nameColor}</h1>
-      {newPalette.map((color, idx) => (
-        <ul key={idx}>
-          <input type="color" value={color} onChange={newColor} />
-        </ul>
-      ))}
+
+      {/* <h1
+        className={`${
+          theme === "light" ? "dark:text-dark" : "text-light"
+        } my-3 p-2 font-bold text-lg`}
+      >
+        {nameColor}
+      </h1> */}
+      <div className="my-5">
+        <div
+          style={{ backgroundColor: colorSelected }}
+          className="flex items-center text-light justify-center w-full h-20 cursor-pointer"
+          onChange={getColor}
+          onClick={() => {
+            copyColorFromPalette(colorSelected);
+          }}
+        >
+          {colorSelected}
+        </div>
+        {newPalette.map((color, idx) => (
+          <ul key={idx}>
+            <section className="h-auto w-full">
+              <div
+                style={{ backgroundColor: color }}
+                className="flex items-center justify-center w-full h-20 cursor-pointer"
+                onChange={getColor}
+                onClick={() => {
+                  copyColorFromPalette(color);
+                }}
+              >
+                <h1 className=" font-thin px-4 py-2 rounded-full p-1 text-light">
+                  {color}
+                </h1>
+              </div>
+            </section>
+          </ul>
+        ))}
+      </div>
     </>
   );
 };
