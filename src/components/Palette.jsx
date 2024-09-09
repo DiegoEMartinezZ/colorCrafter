@@ -69,7 +69,7 @@ const Palette = () => {
 
   const colorSchemeURL = `https://www.thecolorapi.com/scheme?hex=${colorSelected.slice(
     1
-  )}&format=JSON&mode=monochrome&count=5`;
+  )}&format=JSON&mode=monochrome&count=6`;
 
   useEffect(() => {
     const paletteColor = () => {
@@ -86,10 +86,20 @@ const Palette = () => {
     paletteColor();
   }, [newPalette]);
 
-  // Click to copy the color fromm the current palette:
+  // Handler when clicked copy the selected color from the current palette:
+
+  const [notification, setNotification] = useState("");
+  const [showNotification, setShowNotification] = useState(false);
 
   const copyColorFromPalette = (color) => {
-    console.log(`Copy the color: ${color}`);
+    navigator.clipboard.writeText(color).then(() => {
+      setNotification(`${color} is copied to clipboard!`);
+      setShowNotification(true);
+    });
+
+    setTimeout(() => {
+      setShowNotification(false);
+    }, 2500);
   };
 
   //
@@ -99,7 +109,7 @@ const Palette = () => {
       <section className="relative flex items-center  justify-center">
         <div
           className={`bg-${
-            theme === "light" ? "dark" : "aquamarine-400"
+            theme === "light" ? "dark" : "aquamarine-200"
           } flex relative h-full items-center p-0.5 rounded-full w-60 justify-center`}
         >
           <input
@@ -128,16 +138,6 @@ const Palette = () => {
         {nameColor}
       </h1> */}
       <div className="my-5">
-        <div
-          style={{ backgroundColor: colorSelected }}
-          className="flex items-center text-light justify-center w-full h-20 cursor-pointer"
-          onChange={getColor}
-          onClick={() => {
-            copyColorFromPalette(colorSelected);
-          }}
-        >
-          {colorSelected}
-        </div>
         {newPalette.map((color, idx) => (
           <ul key={idx}>
             <section className="h-auto w-full">
@@ -157,6 +157,11 @@ const Palette = () => {
           </ul>
         ))}
       </div>
+      {showNotification && (
+        <div className="fixed bg-aquamarine-200 top-4 left-1/2 transform -translate-x-1/2 px-4 py-2 rounded shadow-md transition-opacity duration-500">
+          {notification}
+        </div>
+      )}
     </>
   );
 };
