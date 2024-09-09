@@ -27,7 +27,7 @@ const Home = () => {
               "Press the spacebar to get a random color or pick your own color."
             }
           />
-          <div className="my-4">
+          <div className="mt-4">
             <Palette />
           </div>
         </div>

@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
 import { ThemeContext } from "../context/ThemeContext";
+import ExampleBtn from "../ui/examples/buttons/ExampleBtn";
 
 const Palette = () => {
   // Context
@@ -102,15 +103,13 @@ const Palette = () => {
     }, 2500);
   };
 
-  //
-
   return (
     <>
       <section className="relative flex items-center  justify-center">
         <div
           className={`bg-${
-            theme === "light" ? "dark" : "aquamarine-200"
-          } flex relative h-full items-center p-0.5 rounded-full w-60 justify-center`}
+            theme === "light" ? "dark" : "dark"
+          } flex relative h-full items-center p-0.5 rounded-full justify-center`}
         >
           <input
             type="color"
@@ -157,6 +156,34 @@ const Palette = () => {
           </ul>
         ))}
       </div>
+
+      <section className="p-5 flex justify-center">
+        {newPalette && (
+          <div className="flex w-1/3 flex-col justify-around">
+            <ExampleBtn
+              bg={newPalette[5]}
+              color={newPalette[0]}
+              border={newPalette[0]}
+              borderWidth={"3px"}
+            />
+
+            <ExampleBtn
+              bg={newPalette[0]}
+              color={newPalette[5]}
+              border={newPalette[5]}
+              borderWidth={"3px"}
+            />
+
+            <ExampleBtn
+              bg={newPalette[3]}
+              color={newPalette[2]}
+              border={newPalette[2]}
+              borderWidth={"3px"}
+            />
+          </div>
+        )}
+      </section>
+
       {showNotification && (
         <div className="fixed bg-aquamarine-200 top-4 left-1/2 transform -translate-x-1/2 px-4 py-2 rounded shadow-md transition-opacity duration-500">
           {notification}
