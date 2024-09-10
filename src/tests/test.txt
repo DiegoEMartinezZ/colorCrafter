@@ -1,0 +1,20 @@
+  // API request for the color name
+  // const apiURL = `https://api.color.pizza/v1/?values=${colorSelected.slice(1)}`;
+
+  // const [nameColor, setNameColor] = useState();
+
+  // useEffect(() => {
+  //   const newColorName = () => {
+  //     axios
+  //       .get(apiURL)
+  //       .then((res) => {
+  //         const name = res.data.paletteTitle;
+  //         console.log(name);
+  //         setNameColor(name);
+  //       })
+  //       .catch((err) => {
+  //         "ERROR", err;
+  //       });
+  //   };
+  //   newColorName();
+  // }, []);

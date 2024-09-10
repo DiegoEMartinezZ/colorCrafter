@@ -1,91 +1,19 @@
-import axios from "axios";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import { ThemeContext } from "../context/ThemeContext";
-import ExampleBtn from "../ui/examples/buttons/ExampleBtn";
+
+import ExamButtonsFlatColor from "../ui/examples/containers/ExamButtonsFlatColor";
+import ExamButtonsOutlineColor from "../ui/examples/containers/ExamButtonsOutlineColor";
 
 const Palette = () => {
   // Context
-  const { theme, inputRef, handleInputSelected } = useContext(ThemeContext);
-  //
-
-  //  Create a 6-digit hexadecimal color code.
-  const newRandomColor = () => {
-    var numbersAndLetters = "0123456789abcdef";
-    let color = "#";
-    for (let i = 0; i < 6; i++) {
-      color += numbersAndLetters[Math.floor(Math.random() * 16)];
-    }
-    return color;
-  };
-  //
-
-  const [colorSelected, setColorSelected] = useState(newRandomColor());
-
-  //handler for spacebar
-  const handleKeyDown = (e) => {
-    if (e.code === "Space") {
-      setColorSelected(newRandomColor());
-    }
-  };
-
-  useEffect(() => {
-    window.addEventListener("keydown", handleKeyDown);
-
-    // Clean up the event listener on component unmount
-    return () => {
-      window.removeEventListener("keydown", handleKeyDown);
-    };
-  }, []);
-
-  // Get the value of the color input
-
-  const getColor = (e) => {
-    e.preventDefault();
-    setColorSelected(e.target.value);
-  };
-
-  // API request for the color name
-  // const apiURL = `https://api.color.pizza/v1/?values=${colorSelected.slice(1)}`;
-
-  // const [nameColor, setNameColor] = useState();
-
-  // useEffect(() => {
-  //   const newColorName = () => {
-  //     axios
-  //       .get(apiURL)
-  //       .then((res) => {
-  //         const name = res.data.paletteTitle;
-  //         console.log(name);
-  //         setNameColor(name);
-  //       })
-  //       .catch((err) => {
-  //         "ERROR", err;
-  //       });
-  //   };
-  //   newColorName();
-  // }, []);
-
-  // API request for color scheme
-  const [newPalette, setNewPalette] = useState([]);
-
-  const colorSchemeURL = `https://www.thecolorapi.com/scheme?hex=${colorSelected.slice(
-    1
-  )}&format=JSON&mode=monochrome&count=6`;
-
-  useEffect(() => {
-    const paletteColor = () => {
-      axios
-        .get(colorSchemeURL)
-        .then((res) => {
-          const colors = res.data.colors.map((color) => color.hex.value);
-          setNewPalette(colors);
-        })
-        .catch((err) => {
-          "ERROR", err;
-        });
-    };
-    paletteColor();
-  }, [newPalette]);
+  const {
+    theme,
+    inputRef,
+    handleInputSelected,
+    newPalette,
+    colorSelected,
+    getColor,
+  } = useContext(ThemeContext);
 
   // Handler when clicked copy the selected color from the current palette:
 
@@ -157,31 +85,9 @@ const Palette = () => {
         ))}
       </div>
 
-      <section className="p-5 flex justify-center">
-        {newPalette && (
-          <div className="flex w-1/3 flex-col justify-around">
-            <ExampleBtn
-              bg={newPalette[5]}
-              color={newPalette[0]}
-              border={newPalette[0]}
-              borderWidth={"3px"}
-            />
-
-            <ExampleBtn
-              bg={newPalette[0]}
-              color={newPalette[5]}
-              border={newPalette[5]}
-              borderWidth={"3px"}
-            />
-
-            <ExampleBtn
-              bg={newPalette[3]}
-              color={newPalette[2]}
-              border={newPalette[2]}
-              borderWidth={"3px"}
-            />
-          </div>
-        )}
+      <section className="p-5 flex justify-center flex-col items-center">
+        <ExamButtonsFlatColor />
+        <ExamButtonsOutlineColor />
       </section>
 
       {showNotification && (
