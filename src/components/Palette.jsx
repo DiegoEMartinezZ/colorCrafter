@@ -3,6 +3,7 @@ import { ThemeContext } from "../context/ThemeContext";
 
 import ExamButtonsFlatColor from "../ui/examples/containers/ExamButtonsFlatColor";
 import ExamButtonsOutlineColor from "../ui/examples/containers/ExamButtonsOutlineColor";
+import Data from "../ui/examples/data/Data";
 
 const Palette = () => {
   // Context
@@ -88,6 +89,7 @@ const Palette = () => {
       <section className="p-5 flex justify-center flex-col items-center">
         <ExamButtonsFlatColor />
         <ExamButtonsOutlineColor />
+        <Data />
       </section>
 
       {showNotification && (
