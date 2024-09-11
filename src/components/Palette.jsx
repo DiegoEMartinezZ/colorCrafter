@@ -34,7 +34,7 @@ const Palette = () => {
 
   return (
     <>
-      <section className="relative flex items-center  justify-center">
+      <section className="relative flex items-center justify-center">
         <div
           className={`bg-${
             theme === "light" ? "dark" : "dark"
@@ -71,13 +71,13 @@ const Palette = () => {
             <section className="h-auto w-full">
               <div
                 style={{ backgroundColor: color }}
-                className="flex items-center justify-center w-full h-20 cursor-pointer"
+                className="flex items-center flex-nowrap justify-center lg:block lg:m-auto lg:w-2/3  cursor-pointer"
                 onChange={getColor}
                 onClick={() => {
                   copyColorFromPalette(color);
                 }}
               >
-                <h1 className=" font-thin px-4 py-2 rounded-full p-1 text-light">
+                <h1 className=" font-thin px-4 py-3 rounded-full p-1 text-light">
                   {color}
                 </h1>
               </div>

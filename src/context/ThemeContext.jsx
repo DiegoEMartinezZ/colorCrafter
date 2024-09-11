@@ -35,6 +35,7 @@ const ThemeProvider = ({ children }) => {
   //handler for spacebar
   const handleKeyDown = (e) => {
     if (e.code === "Space") {
+      e.preventDefault();
       setColorSelected(newRandomColor());
     }
   };

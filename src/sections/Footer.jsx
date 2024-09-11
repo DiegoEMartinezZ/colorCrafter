@@ -14,7 +14,7 @@ const Footer = () => {
       <footer
         className={`text-${
           theme === "light" ? "dark" : "light"
-        } absolute bottom-0 right-0 left-0 text-center p-5 text-xs italic font-light`}
+        } absolute w-auto bottom-0 right-0 left-0 text-center p-5 text-xs italic font-light lg:w-1/3 lg:block lg:m-auto`}
       >
         <div className="p-3 flex justify-around">
           <SocialMedia
@@ -30,7 +30,7 @@ const Footer = () => {
             url={"https://www.behance.net/lowoncyan_"}
           />
         </div>
-        <h4> Diego Martínez - 2024 </h4>
+        <h4 className="lg:text-sm text-xs"> Diego Martínez - 2024 </h4>
       </footer>
     </>
   );
