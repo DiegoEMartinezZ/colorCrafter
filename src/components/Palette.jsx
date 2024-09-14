@@ -4,6 +4,8 @@ import { ThemeContext } from "../context/ThemeContext";
 import ExamButtonsFlatColor from "../ui/examples/containers/ExamButtonsFlatColor";
 import ExamButtonsOutlineColor from "../ui/examples/containers/ExamButtonsOutlineColor";
 import Data from "../ui/examples/data/Data";
+import DataContrast from "../ui/examples/data/DataContrast";
+import ImgDesign from "../ui/examples/imgs/ImgDesign";
 
 const Palette = () => {
   // Context
@@ -65,32 +67,40 @@ const Palette = () => {
       >
         {nameColor}
       </h1> */}
-      <div className="my-5">
+      <div className="lg:flex p-5 md:w-1/2 sm:w-2/3 w-2/3 m-auto lg:justify-center">
         {newPalette.map((color, idx) => (
-          <ul key={idx}>
-            <section className="h-auto w-full">
+          <ul key={idx} className="lg:mx-1">
+            <section className="h-auto w-full lg:relative my-2">
               <div
                 style={{ backgroundColor: color }}
-                className="flex items-center flex-nowrap justify-center lg:block lg:m-auto lg:w-2/3  cursor-pointer"
+                className="flex items-center flex-nowrap h-12 rounded-lg lg:rounded-xl justify-center lg:block lg:w-32 lg:h-32 cursor-pointer"
                 onChange={getColor}
                 onClick={() => {
                   copyColorFromPalette(color);
                 }}
               >
-                <h1 className=" font-thin px-4 py-3 rounded-full p-1 text-light">
-                  {color}
-                </h1>
+                <div className="lg:flex lg:flex-col lg:absolute lg:right-0 lg:bottom-0 lg:top-12 lg:left-0">
+                  <h1 className="font-thin p-1 text-light">{color}</h1>
+                </div>
               </div>
             </section>
           </ul>
         ))}
       </div>
 
-      <section className="p-5 flex justify-center flex-col items-center">
+      <section className="p-5 flex justify-center lg:flex-row flex-col items-center">
         <ExamButtonsFlatColor />
         <ExamButtonsOutlineColor />
-        <Data />
+        <div className="flex flex-col">
+          <Data />
+          <DataContrast />
+        </div>
       </section>
+      <div className="flex justify-center items-center flex-col lg:flex-row">
+        <ImgDesign />
+        <ImgDesign />
+        <ImgDesign />
+      </div>
 
       {showNotification && (
         <div className="fixed bg-aquamarine-200 top-4 left-1/2 transform -translate-x-1/2 px-4 py-2 rounded shadow-md transition-opacity duration-500">
