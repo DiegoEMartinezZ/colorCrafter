@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { ThemeContext } from "../../../context/ThemeContext";
 
-const ImgDesign = () => {
+const ImgHighlight = () => {
   const { newPalette } = useContext(ThemeContext);
   return (
     <section>
@@ -12,10 +12,13 @@ const ImgDesign = () => {
           className="rounded-xl h-full w-full object-cover"
         />
         <div
-          style={{ backgroundColor: newPalette[0], opacity: 0.5 }}
+          style={{ opacity: 0.5 }}
           className="absolute inset-0  bg-opacity-40 rounded-xl flex items-center justify-center"
         >
-          <h1 className="text-light font-bold text-4xl p-5 uppercase">
+          <h1
+            style={{ backgroundColor: newPalette[5], color: newPalette[0] }}
+            className="text-light m-4 rounded-lg font-bold text-4xl p-5 uppercase"
+          >
             Your title here
           </h1>
         </div>
@@ -24,4 +27,4 @@ const ImgDesign = () => {
   );
 };
 
-export default ImgDesign;
+export default ImgHighlight;

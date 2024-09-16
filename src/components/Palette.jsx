@@ -6,6 +6,8 @@ import ExamButtonsOutlineColor from "../ui/examples/containers/ExamButtonsOutlin
 import Data from "../ui/examples/data/Data";
 import DataContrast from "../ui/examples/data/DataContrast";
 import ImgDesign from "../ui/examples/imgs/ImgDesign";
+import ImgHighlight from "../ui/examples/imgs/ImgHighlight";
+import ImgHighlight02 from "../ui/examples/imgs/ImgHighlight02";
 
 const Palette = () => {
   // Context
@@ -88,18 +90,19 @@ const Palette = () => {
         ))}
       </div>
 
-      <section className="p-5 flex justify-center lg:flex-row flex-col items-center">
-        <ExamButtonsFlatColor />
-        <ExamButtonsOutlineColor />
-        <div className="flex flex-col">
+      <section className="md:flex-col p-5 flex justify-center lg:flex-row flex-col items-center">
+        <div className="flex flex-col md:flex-row">
+          <ExamButtonsFlatColor />
+          <ExamButtonsOutlineColor />
+        </div>
+        <div className="flex flex-col md:flex-row lg:flex-col">
           <Data />
           <DataContrast />
         </div>
       </section>
-      <div className="flex justify-center items-center flex-col lg:flex-row">
+      <div className="flex justify-center md:flex-row items-center flex-col lg:flex-row">
         <ImgDesign />
-        <ImgDesign />
-        <ImgDesign />
+        <ImgHighlight />
       </div>
 
       {showNotification && (
