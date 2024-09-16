@@ -5,6 +5,7 @@ import { ThemeContext } from "../context/ThemeContext";
 import DarkModeBtn from "../components/DarkModeBtn";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPenFancy } from "@fortawesome/free-solid-svg-icons";
+import NavBar from "../components/NavBar";
 
 const Home = () => {
   const { theme } = useContext(ThemeContext);
@@ -14,8 +15,8 @@ const Home = () => {
         theme === "light" ? "light" : "dark"
       } text-white relative`}
     >
-      <DarkModeBtn />
-      <div className="pt-16 text-center">
+      <NavBar />
+      <div className="pt-3 text-center">
         <FontAwesomeIcon
           icon={faPenFancy}
           className={`text-${theme === "light" ? "dark" : "light"}`}

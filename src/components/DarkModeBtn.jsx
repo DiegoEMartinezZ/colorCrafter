@@ -6,7 +6,7 @@ import { faMoon, faSun } from "@fortawesome/free-solid-svg-icons";
 const DarkModeBtn = () => {
   const { theme, toggleTheme } = useContext(ThemeContext);
   return (
-    <button className="absolute p-5 right-0" onClick={toggleTheme}>
+    <button className="absolute right-0 p-5" onClick={toggleTheme}>
       <FontAwesomeIcon
         className={`text-${theme === "light" ? "dark" : "light"}`}
         icon={theme === "light" ? faMoon : faSun}

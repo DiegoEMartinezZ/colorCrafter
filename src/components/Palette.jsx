@@ -7,7 +7,6 @@ import Data from "../ui/examples/data/Data";
 import DataContrast from "../ui/examples/data/DataContrast";
 import ImgDesign from "../ui/examples/imgs/ImgDesign";
 import ImgHighlight from "../ui/examples/imgs/ImgHighlight";
-import ImgHighlight02 from "../ui/examples/imgs/ImgHighlight02";
 
 const Palette = () => {
   // Context
@@ -42,7 +41,7 @@ const Palette = () => {
         <div
           className={`bg-${
             theme === "light" ? "dark" : "dark"
-          } flex relative h-full items-center p-0.5 rounded-full justify-center`}
+          } flex  fixed m-5 bottom-0 z-10 lg:relative lg:h-full items-center p-0.5 rounded-full justify-center`}
         >
           <input
             type="color"
@@ -55,10 +54,11 @@ const Palette = () => {
             type="text"
             ref={inputRef}
             value={colorSelected}
-            className="p-2 text-center w-full font-medium h-full rounded-full bg-transparent"
+            className="p-2 text-center w-full font-medium h-full rounded-full bg-blend-multiply bg-light"
             onChange={getColor}
             onClick={handleInputSelected}
           />
+          <button> Random </button>
         </div>
       </section>
 

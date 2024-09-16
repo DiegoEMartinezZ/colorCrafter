@@ -19,7 +19,7 @@ const Landing = () => {
         <div
           className={`text-dark text-center flex flex-col items-center justify-center h-screen`}
         >
-          <Title name={"ColorCrafter"} />
+          <Title name={"TheColorCrafter"} />
           <DemoButton text={"Create Palette!"} view={"/home"} />
         </div>
         <Footer />
