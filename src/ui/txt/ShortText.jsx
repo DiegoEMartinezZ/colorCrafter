@@ -7,7 +7,7 @@ const ShortText = ({ text }) => {
     <p
       className={`text-${
         theme === "light" ? "dark" : "light"
-      } m-3 px-3 font-base text-sm`}
+      } font-normal text-base text-center p-2 w-11/12 m-auto sm:w-1/2 lg:w-1/3 rounded-xl block border-2`}
     >
       {text}
     </p>

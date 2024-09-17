@@ -5,7 +5,7 @@ const ImgDesign = () => {
   const { newPalette } = useContext(ThemeContext);
   return (
     <section>
-      <div className="relative w-72 h-72 m-3">
+      <div className="relative w-80 h-auto m-3">
         <img
           src="/img/photoPeople.jpg"
           alt="Photo"

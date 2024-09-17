@@ -32,13 +32,24 @@ const ThemeProvider = ({ children }) => {
 
   const [colorSelected, setColorSelected] = useState(newRandomColor());
 
-  //handler for spacebar
+  //handler for spacebar to get a random color
   const handleKeyDown = (e) => {
     if (e.code === "Space") {
       e.preventDefault();
       setColorSelected(newRandomColor());
     }
   };
+
+  // handler for button 'Random' for random color when smarthphone
+
+  const randomColor = (e) => {
+    e.preventDefault();
+    setColorSelected(newRandomColor());
+  };
+
+  useEffect(() => {
+    randomColor;
+  }, []);
 
   useEffect(() => {
     window.addEventListener("keydown", handleKeyDown);
@@ -87,6 +98,7 @@ const ThemeProvider = ({ children }) => {
         newPalette,
         getColor,
         colorSelected,
+        randomColor,
       }}
     >
       {children}

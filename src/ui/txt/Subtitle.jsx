@@ -6,7 +6,7 @@ const Subtitle = ({ name }) => {
   return (
     <h2
       className={`text-${
-        theme === "light" ? "dark" : "dark"
+        theme === "light" ? "dark" : "light"
       } font-semibold text-base p-1`}
     >
       {" "}

@@ -7,16 +7,17 @@ import Data from "../ui/examples/data/Data";
 import DataContrast from "../ui/examples/data/DataContrast";
 import ImgDesign from "../ui/examples/imgs/ImgDesign";
 import ImgHighlight from "../ui/examples/imgs/ImgHighlight";
+import Subtitle from "../ui/txt/Subtitle";
 
 const Palette = () => {
   // Context
   const {
-    theme,
     inputRef,
     handleInputSelected,
     newPalette,
     colorSelected,
     getColor,
+    randomColor,
   } = useContext(ThemeContext);
 
   // Handler when clicked copy the selected color from the current palette:
@@ -39,13 +40,11 @@ const Palette = () => {
     <>
       <section className="relative flex items-center justify-center">
         <div
-          className={`bg-${
-            theme === "light" ? "dark" : "dark"
-          } flex  fixed m-5 bottom-0 z-10 lg:relative lg:h-full items-center p-0.5 rounded-full justify-center`}
+          className={`flex fixed bottom-0 z-10 lg:w-72 sm:w-1/2  w-11/12 my-5 lg:relative lg:h-full items-center p-0.5 rounded-full justify-center`}
         >
           <input
             type="color"
-            className="absolute w-7 h-7 left-4 rounded-full border-none cursor-pointer"
+            className="absolute w-7 h-7 left-4 border-none cursor-pointer"
             value={colorSelected}
             onChange={getColor}
           />
@@ -54,11 +53,17 @@ const Palette = () => {
             type="text"
             ref={inputRef}
             value={colorSelected}
-            className="p-2 text-center w-full font-medium h-full rounded-full bg-blend-multiply bg-light"
+            className="p-3 shadow-md text-center w-full font-medium h-full rounded-full bg-light"
             onChange={getColor}
             onClick={handleInputSelected}
           />
-          <button> Random </button>
+
+          <button
+            className="lg:hidden font-base absolute right-0 px-3 py-1 mr-3 rounded-full bg-aquamarine-200 cursor-pointer"
+            onClick={randomColor}
+          >
+            Random
+          </button>
         </div>
       </section>
 
@@ -69,13 +74,13 @@ const Palette = () => {
       >
         {nameColor}
       </h1> */}
-      <div className="lg:flex p-5 md:w-1/2 sm:w-2/3 w-2/3 m-auto lg:justify-center">
+      <div className="lg:flex p-5 md:w-1/2 sm:w-2/3 m-auto lg:justify-center">
         {newPalette.map((color, idx) => (
           <ul key={idx} className="lg:mx-1">
-            <section className="h-auto w-full lg:relative my-2">
+            <section className="h-auto w-full lg:relative my-1">
               <div
                 style={{ backgroundColor: color }}
-                className="flex items-center flex-nowrap h-12 rounded-lg lg:rounded-xl justify-center lg:block lg:w-32 lg:h-32 cursor-pointer"
+                className="flex items-center w-full flex-nowrap h-12 rounded-lg lg:rounded-xl justify-center lg:block lg:w-32 lg:h-32 cursor-pointer"
                 onChange={getColor}
                 onClick={() => {
                   copyColorFromPalette(color);
@@ -90,7 +95,9 @@ const Palette = () => {
         ))}
       </div>
 
-      <section className="md:flex-col p-5 flex justify-center lg:flex-row flex-col items-center">
+      <Subtitle name={"Examples"} />
+
+      <section className="md:flex-col flex justify-center lg:flex-row flex-col items-center">
         <div className="flex flex-col md:flex-row">
           <ExamButtonsFlatColor />
           <ExamButtonsOutlineColor />

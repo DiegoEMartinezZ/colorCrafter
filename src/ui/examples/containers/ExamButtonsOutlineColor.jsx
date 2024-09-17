@@ -1,5 +1,4 @@
 import React, { useContext } from "react";
-import Subtitle from "../../txt/Subtitle";
 import ExampleBtn from "../buttons/ExampleBtn";
 import { ThemeContext } from "../../../context/ThemeContext";
 
@@ -7,8 +6,8 @@ const ExamButtonsOutlineColor = () => {
   const { newPalette } = useContext(ThemeContext);
 
   return (
-    <div className="p-8 flex flex-col w-72 h-auto rounded-xl m-1 justify-around bg-light  border-2 border-dark/20 ">
-      <Subtitle name={"Buttons: Outline"} />
+    <div className="flex flex-col w-80 p-4 h-auto rounded-xl m-1 justify-around bg-light  border-2 border-dark/20 ">
+      <h3 className="font-medium my-2">Buttons: Outline </h3>
       <div className="flex flex-col items-center ">
         <ExampleBtn
           color={newPalette[0]}
