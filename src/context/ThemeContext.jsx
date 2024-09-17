@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { createContext, useEffect, useRef, useState } from "react";
+import React, { createContext, useEffect, useState } from "react";
 
 const ThemeContext = createContext();
 
@@ -8,15 +8,6 @@ const ThemeProvider = ({ children }) => {
   const [theme, setTheme] = useState("light");
   const toggleTheme = () => {
     setTheme((prevTheme) => (prevTheme === "light" ? "dark" : "light"));
-  };
-
-  // select the input when is clicked
-
-  const inputRef = useRef(null);
-  const handleInputSelected = () => {
-    if (inputRef.current) {
-      inputRef.current.select();
-    }
   };
 
   //  Create a 6-digit hexadecimal color code.
@@ -40,6 +31,15 @@ const ThemeProvider = ({ children }) => {
     }
   };
 
+  useEffect(() => {
+    window.addEventListener("keydown", handleKeyDown);
+
+    // Clean up the event listener on component unmount
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, []);
+
   // handler for button 'Random' for random color when smarthphone
 
   const randomColor = (e) => {
@@ -51,27 +51,27 @@ const ThemeProvider = ({ children }) => {
     randomColor;
   }, []);
 
-  useEffect(() => {
-    window.addEventListener("keydown", handleKeyDown);
-
-    // Clean up the event listener on component unmount
-    return () => {
-      window.removeEventListener("keydown", handleKeyDown);
-    };
-  }, []);
-
   // Get the value of the color input
 
   const getColor = (e) => {
-    e.preventDefault();
-    setColorSelected(e.target.value);
+    const currentColorValue = e.target.value;
+    if (currentColorValue.length <= 7 && currentColorValue.length >= 0) {
+      setColorSelected(currentColorValue);
+    }
+    console.log(currentColorValue);
   };
 
   // API request for color scheme
   const [newPalette, setNewPalette] = useState([]);
-  const colorSchemeURL = `https://www.thecolorapi.com/scheme?hex=${colorSelected.slice(
+
+  let colorSchemeURL = `https://www.thecolorapi.com/scheme?hex=${colorSelected.slice(
     1
   )}&format=JSON&mode=monochrome&count=6`;
+
+  useEffect(() => {
+    console.log(colorSchemeURL);
+    console.log(colorSelected);
+  }, []);
 
   useEffect(() => {
     const paletteColor = () => {
@@ -93,8 +93,6 @@ const ThemeProvider = ({ children }) => {
       value={{
         theme,
         toggleTheme,
-        inputRef,
-        handleInputSelected,
         newPalette,
         getColor,
         colorSelected,

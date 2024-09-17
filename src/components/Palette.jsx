@@ -1,6 +1,5 @@
 import React, { useContext, useState } from "react";
 import { ThemeContext } from "../context/ThemeContext";
-
 import ExamButtonsFlatColor from "../ui/examples/containers/ExamButtonsFlatColor";
 import ExamButtonsOutlineColor from "../ui/examples/containers/ExamButtonsOutlineColor";
 import Data from "../ui/examples/data/Data";
@@ -8,17 +7,12 @@ import DataContrast from "../ui/examples/data/DataContrast";
 import ImgDesign from "../ui/examples/imgs/ImgDesign";
 import ImgHighlight from "../ui/examples/imgs/ImgHighlight";
 import Subtitle from "../ui/txt/Subtitle";
+import BtnActions from "../ui/buttons/BtnActions";
 
 const Palette = () => {
   // Context
-  const {
-    inputRef,
-    handleInputSelected,
-    newPalette,
-    colorSelected,
-    getColor,
-    randomColor,
-  } = useContext(ThemeContext);
+  const { newPalette, colorSelected, getColor, randomColor } =
+    useContext(ThemeContext);
 
   // Handler when clicked copy the selected color from the current palette:
 
@@ -51,19 +45,12 @@ const Palette = () => {
 
           <input
             type="text"
-            ref={inputRef}
-            value={colorSelected}
             className="p-3 shadow-md text-center w-full font-medium h-full rounded-full bg-light"
+            value={colorSelected}
             onChange={getColor}
-            onClick={handleInputSelected}
           />
 
-          <button
-            className="lg:hidden font-base absolute right-0 px-3 py-1 mr-3 rounded-full bg-aquamarine-200 cursor-pointer"
-            onClick={randomColor}
-          >
-            Random
-          </button>
+          <BtnActions name={"Random"} handler={randomColor} />
         </div>
       </section>
 
