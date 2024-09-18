@@ -59,6 +59,7 @@ const ThemeProvider = ({ children }) => {
     if (/^#[0-9A-Fa-f]{0,6}$/i.test(currentColorValue)) {
       setColorSelected(currentColorValue);
     }
+
     console.log(currentColorValue);
   };
 
@@ -75,13 +76,14 @@ const ThemeProvider = ({ children }) => {
         .then((res) => {
           const colors = res.data.colors.map((color) => color.hex.value);
           setNewPalette(colors);
+          console.log(colorSchemeURL);
         })
         .catch((err) => {
           "ERROR", err;
         });
     };
     paletteColor();
-  }, [newPalette]);
+  }, [colorSelected]);
 
   return (
     <ThemeContext.Provider
