@@ -21,13 +21,13 @@ const ThemeProvider = ({ children }) => {
   };
   //
 
-  const [colorSelected, setColorSelected] = useState(newRandomColor());
+  const [colorSelected, setColorSelected] = useState(newRandomColor);
 
   //handler for spacebar to get a random color
   const handleKeyDown = (e) => {
     if (e.code === "Space") {
       e.preventDefault();
-      setColorSelected(newRandomColor());
+      setColorSelected(newRandomColor);
     }
   };
 
@@ -44,7 +44,7 @@ const ThemeProvider = ({ children }) => {
 
   const randomColor = (e) => {
     e.preventDefault();
-    setColorSelected(newRandomColor());
+    setColorSelected(newRandomColor);
   };
 
   useEffect(() => {
@@ -55,7 +55,8 @@ const ThemeProvider = ({ children }) => {
 
   const getColor = (e) => {
     const currentColorValue = e.target.value;
-    if (currentColorValue.length <= 7 && currentColorValue.length >= 0) {
+
+    if (/^#[0-9A-Fa-f]{0,6}$/i.test(currentColorValue)) {
       setColorSelected(currentColorValue);
     }
     console.log(currentColorValue);
@@ -64,17 +65,11 @@ const ThemeProvider = ({ children }) => {
   // API request for color scheme
   const [newPalette, setNewPalette] = useState([]);
 
-  let colorSchemeURL = `https://www.thecolorapi.com/scheme?hex=${colorSelected.slice(
-    1
-  )}&format=JSON&mode=monochrome&count=6`;
-
-  useEffect(() => {
-    console.log(colorSchemeURL);
-    console.log(colorSelected);
-  }, []);
-
   useEffect(() => {
     const paletteColor = () => {
+      const searchColor = colorSelected.slice(1);
+      let colorSchemeURL = `https://www.thecolorapi.com/scheme?hex=${searchColor}&format=JSON&mode=monochrome&count=6`;
+
       axios
         .get(colorSchemeURL)
         .then((res) => {

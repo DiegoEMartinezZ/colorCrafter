@@ -38,6 +38,7 @@ const Palette = () => {
         >
           <input
             type="color"
+            placeholder="Hexcode"
             className="absolute w-7 h-7 left-4 border-none cursor-pointer"
             value={colorSelected}
             onChange={getColor}
