@@ -69,7 +69,7 @@ const ThemeProvider = ({ children }) => {
   useEffect(() => {
     const paletteColor = () => {
       const searchColor = colorSelected.slice(1);
-      let colorSchemeURL = `https://www.thecolorapi.com/scheme?hex=${searchColor}&format=JSON&mode=monochrome&count=6`;
+      let colorSchemeURL = `https://www.thecolorapi.com/scheme?hex=${searchColor}&format=JSON&mode=monochrome-light&count=6`;
 
       axios
         .get(colorSchemeURL)

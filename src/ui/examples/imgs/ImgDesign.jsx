@@ -12,7 +12,7 @@ const ImgDesign = () => {
           className="rounded-xl h-full w-full object-cover"
         />
         <div
-          style={{ backgroundColor: newPalette[0], opacity: 0.5 }}
+          style={{ backgroundColor: newPalette[2], opacity: 0.5 }}
           className="absolute inset-0  bg-opacity-40 rounded-xl flex items-center justify-center"
         >
           <h1 className="text-light font-bold text-4xl p-5 uppercase">
