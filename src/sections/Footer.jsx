@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import SocialMedia from "../components/SocialMedia";
 import {
   faBehance,
+  faGithub,
   faInstagram,
   faLinkedin,
 } from "@fortawesome/free-brands-svg-icons";
@@ -24,6 +25,10 @@ const Footer = () => {
           <SocialMedia
             name={faLinkedin}
             url={"https://www.linkedin.com/in/diegomz/"}
+          />
+          <SocialMedia
+            name={faGithub}
+            url={"https://github.com/DiegoEMartinezZ"}
           />
           <SocialMedia
             name={faBehance}
