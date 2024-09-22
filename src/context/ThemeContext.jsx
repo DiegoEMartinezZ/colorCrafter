@@ -51,6 +51,8 @@ const ThemeProvider = ({ children }) => {
     randomColor;
   }, []);
 
+  // Different buttons to change the mode of the palette to show
+
   // Get the value of the color input
 
   const getColor = (e) => {
@@ -69,7 +71,7 @@ const ThemeProvider = ({ children }) => {
   useEffect(() => {
     const paletteColor = () => {
       const searchColor = colorSelected.slice(1);
-      let colorSchemeURL = `https://www.thecolorapi.com/scheme?hex=${searchColor}&format=JSON&mode=monochrome-light&count=6`;
+      let colorSchemeURL = `https://www.thecolorapi.com/scheme?hex=${searchColor}&format=JSON&mode=monochrome&count=8`;
 
       axios
         .get(colorSchemeURL)

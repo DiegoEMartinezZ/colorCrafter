@@ -30,7 +30,7 @@ const Footer = () => {
             url={"https://www.behance.net/lowoncyan_"}
           />
         </div>
-        <h4 className="lg:text-sm text-xs"> Diego Martínez - 2024 </h4>
+        <h4 className="text-xs "> Diego Martínez - 2024 </h4>
       </footer>
     </>
   );
