@@ -8,10 +8,11 @@ import ImgDesign from "../ui/examples/imgs/ImgDesign";
 import ImgHighlight from "../ui/examples/imgs/ImgHighlight";
 import Subtitle from "../ui/txt/Subtitle";
 import BtnActions from "../ui/buttons/BtnActions";
+import colorMode from "../ui/colorModes/colorModes.json";
 
 const Palette = () => {
   // Context
-  const { newPalette, colorSelected, getColor, randomColor } =
+  const { newPalette, colorSelected, getColor, randomColor, changeModeColor } =
     useContext(ThemeContext);
 
   // Handler when clicked copy the selected color from the current palette:
@@ -62,6 +63,21 @@ const Palette = () => {
       >
         {nameColor}
       </h1> */}
+
+      <label>
+        <select name="colorMode" id="ColorMode" onChange={changeModeColor}>
+          {colorMode.map((mode, idx) => (
+            <option
+              key={idx}
+              value={mode.toLowerCase()}
+              className="text-center"
+            >
+              {mode}
+            </option>
+          ))}
+        </select>
+      </label>
+
       <div className="lg:flex p-5 md:w-1/2 sm:w-2/3 m-auto lg:justify-center">
         {newPalette.map((color, idx) => (
           <ul key={idx} className="lg:mx-1">

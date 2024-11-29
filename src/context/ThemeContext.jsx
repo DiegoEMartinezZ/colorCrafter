@@ -61,17 +61,24 @@ const ThemeProvider = ({ children }) => {
     if (/^#[0-9A-Fa-f]{0,6}$/i.test(currentColorValue)) {
       setColorSelected(currentColorValue);
     }
-
     console.log(currentColorValue);
   };
 
   // API request for color scheme
   const [newPalette, setNewPalette] = useState([]);
 
+  // Handler for doprdow menu for the different color modes
+
+  const [modeColor, setModeColor] = useState("monochrome");
+
+  const changeModeColor = (e) => {
+    setModeColor(e.target.value);
+  };
+
   useEffect(() => {
     const paletteColor = () => {
       const searchColor = colorSelected.slice(1);
-      let colorSchemeURL = `https://www.thecolorapi.com/scheme?hex=${searchColor}&format=JSON&mode=monochrome&count=8`;
+      let colorSchemeURL = `https://www.thecolorapi.com/scheme?hex=${searchColor}&format=JSON&mode=${modeColor}&count=10`;
 
       axios
         .get(colorSchemeURL)
@@ -85,7 +92,7 @@ const ThemeProvider = ({ children }) => {
         });
     };
     paletteColor();
-  }, [colorSelected]);
+  }, [colorSelected, modeColor]);
 
   return (
     <ThemeContext.Provider
@@ -96,6 +103,7 @@ const ThemeProvider = ({ children }) => {
         getColor,
         colorSelected,
         randomColor,
+        changeModeColor,
       }}
     >
       {children}
