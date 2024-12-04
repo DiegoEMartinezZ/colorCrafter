@@ -78,7 +78,7 @@ const ThemeProvider = ({ children }) => {
   useEffect(() => {
     const paletteColor = () => {
       const searchColor = colorSelected.slice(1);
-      let colorSchemeURL = `https://www.thecolorapi.com/scheme?hex=${searchColor}&format=JSON&mode=${modeColor}&count=10`;
+      let colorSchemeURL = `https://www.thecolorapi.com/scheme?hex=${searchColor}&format=JSON&mode=${modeColor}&count=8`;
 
       axios
         .get(colorSchemeURL)

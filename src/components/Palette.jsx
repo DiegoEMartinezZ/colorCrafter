@@ -9,11 +9,23 @@ import ImgHighlight from "../ui/examples/imgs/ImgHighlight";
 import Subtitle from "../ui/txt/Subtitle";
 import BtnActions from "../ui/buttons/BtnActions";
 import colorMode from "../ui/colorModes/colorModes.json";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPalette } from "@fortawesome/free-solid-svg-icons/faPalette";
+import SocialMediaIconsExamples from "../ui/examples/RRSS/socialMediaIconsExamples";
+import SocialMediaIconsExamplesB from "../ui/examples/RRSS/SocialMediaIconsExamplesB";
+import SocialMediaIconsExamplesC from "../ui/examples/RRSS/SocialMediaIconsExamplesC";
+import SocialMediaIconsExamplesD from "../ui/examples/RRSS/SocialMediaIconsExamplesD";
 
 const Palette = () => {
   // Context
-  const { newPalette, colorSelected, getColor, randomColor, changeModeColor } =
-    useContext(ThemeContext);
+  const {
+    theme,
+    newPalette,
+    colorSelected,
+    getColor,
+    randomColor,
+    changeModeColor,
+  } = useContext(ThemeContext);
 
   // Handler when clicked copy the selected color from the current palette:
 
@@ -30,6 +42,8 @@ const Palette = () => {
       setShowNotification(false);
     }, 2500);
   };
+
+  const organizedColorMode = colorMode.sort();
 
   return (
     <>
@@ -56,17 +70,18 @@ const Palette = () => {
         </div>
       </section>
 
-      {/* <h1
-        className={`${
-          theme === "light" ? "dark:text-dark" : "text-light"
-        } my-3 p-2 font-bold text-lg`}
-      >
-        {nameColor}
-      </h1> */}
+      <label className="flex flex-col items-center justify-center">
+        <h3 className={`text-${theme === "light" ? "dark" : "light"} m-3`}>
+          <FontAwesomeIcon icon={faPalette} /> Palette Modes:{" "}
+        </h3>
 
-      <label>
-        <select name="colorMode" id="ColorMode" onChange={changeModeColor}>
-          {colorMode.map((mode, idx) => (
+        <select
+          name="colorMode"
+          id="ColorMode"
+          className="bg-aquamarine-50 rounded-full p-2"
+          onChange={changeModeColor}
+        >
+          {organizedColorMode.map((mode, idx) => (
             <option
               key={idx}
               value={mode.toLowerCase()}
@@ -114,6 +129,16 @@ const Palette = () => {
       <div className="flex justify-center md:flex-row items-center flex-col lg:flex-row">
         <ImgDesign />
         <ImgHighlight />
+      </div>
+      <div className="flex flex-col items-center md:flex-col lg:flex-col pb-24">
+        <div className="md:flex">
+          <SocialMediaIconsExamples />
+          <SocialMediaIconsExamplesB />
+        </div>
+        <div className="md:flex">
+          <SocialMediaIconsExamplesC />
+          <SocialMediaIconsExamplesD />
+        </div>
       </div>
 
       {showNotification && (
