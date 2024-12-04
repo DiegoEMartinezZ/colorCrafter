@@ -11,7 +11,7 @@ import BtnActions from "../ui/buttons/BtnActions";
 import colorMode from "../ui/colorModes/colorModes.json";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPalette } from "@fortawesome/free-solid-svg-icons/faPalette";
-import SocialMediaIconsExamples from "../ui/examples/RRSS/socialMediaIconsExamples";
+import SocialMediaIconsExamples from "../ui/examples/RRSS/SocialMediaIconsExamples";
 import SocialMediaIconsExamplesB from "../ui/examples/RRSS/SocialMediaIconsExamplesB";
 import SocialMediaIconsExamplesC from "../ui/examples/RRSS/SocialMediaIconsExamplesC";
 import SocialMediaIconsExamplesD from "../ui/examples/RRSS/SocialMediaIconsExamplesD";
