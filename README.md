@@ -10,8 +10,6 @@ It also shows to the users examples of the selected color in some graphic pieces
 
 These instructions will allow you to get a copy of the project running on your local machine for development and testing purposes.
 
-Mira **Deployment** para conocer como desplegar el proyecto.
-
 ### Installation 🔧
 
 The first step is to clone this repository on your local machine, for that we use the following command.
