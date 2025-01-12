@@ -61,4 +61,4 @@ For any comment, suggestion or doubt you can write to my email diermaza.23@gmail
 ## Thanks for watching 🎁
 
 - Any comments for improvement are more than welcome
-- Thnaks to [Jimmy](https://github.com/iDeerBoy), a good friend who helped me when I was stuck in the project. And he made me code revisions whenever he could.
+- Thanks to [Jimmy](https://github.com/iDeerBoy), a good friend who helped me when I was stuck in the project. And he made me code revisions whenever he could.
