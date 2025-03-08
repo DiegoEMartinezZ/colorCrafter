@@ -10,8 +10,6 @@ It also shows to the users examples of the selected color in some graphic pieces
 
 These instructions will allow you to get a copy of the project running on your local machine for development and testing purposes.
 
-Mira **Deployment** para conocer como desplegar el proyecto.
-
 ### Installation 🔧
 
 The first step is to clone this repository on your local machine, for that we use the following command.
@@ -63,4 +61,4 @@ For any comment, suggestion or doubt you can write to my email diermaza.23@gmail
 ## Thanks for watching 🎁
 
 - Any comments for improvement are more than welcome
-- Thnaks to [Jimmy](https://github.com/iDeerBoy), a good friend who helped me when I was stuck in the project. And he made me code revisions whenever he could.
+- Thanks to [Jimmy](https://github.com/iDeerBoy), a good friend who helped me when I was stuck in the project. And he made me code revisions whenever he could.
